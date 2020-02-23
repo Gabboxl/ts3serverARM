@@ -2,7 +2,7 @@
 I managed to run some x86 applications like the Teamspeak (32 bit) server on my rpi 3B+ using a chroot environment using the following programs:
 
 ## Requirements
-- Be sure to use the 4.0.0 (or later) version of `qemu`, `qemu-user` and `qemu-user-static` (if not available, for raspbian u can use debian's `sid` repository && for ubuntu use `eoan` or newer repos [u can change repos by following this guide:; ])
+- Be sure to use the 4.0.0 (or later) version of `qemu`, `qemu-user` and `qemu-user-static` (if not available, for raspbian u can use debian's `sid` repository && for ubuntu use `eoan` or newer repos [u can change the repos by editing your /etc/apt/sources.list file; [anyway google is your best friend](https://google.it) ])
 - `debootstrap`
 - `binfmt-support`
 - `binutils`
