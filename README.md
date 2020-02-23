@@ -46,6 +46,7 @@ Be aware that this a completely detached environment from the base raspberry's s
 ## RUNNING THE SERVER IN BACKGROUND
 **from the base system**
 use `screen`: `apt install screen`
+
 `sudo screen -dm sudo chroot ./chroot-stretch/ /root/teamspeak3-server_linux_x86/ts3server_minimal_runscript.sh`
 
 to kill a screen instance [this is its documentation](https://www.gnu.org/software/screen/manual/screen.html).
