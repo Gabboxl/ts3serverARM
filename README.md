@@ -49,7 +49,7 @@ use `screen`: `apt install screen`
 
 `sudo screen -dm sudo chroot ./chroot-stretch/ /root/teamspeak3-server_linux_x86/ts3server_minimal_runscript.sh`
 
-to kill a screen instance [this is its documentation](https://www.gnu.org/software/screen/manual/screen.html).
+to kill a screen instance, [this is its documentation](https://www.gnu.org/software/screen/manual/screen.html).
 
 ## Final considerations
 So, when someone connects to the server, most probably it will spam `Unsupported ancillary data: 0/8` or similar text in the console. Don't worry about and ignore it, everything is working fine (well yes but actually no).
@@ -57,7 +57,7 @@ So, when someone connects to the server, most probably it will spam `Unsupported
 - when you stop the server you may encounter a segmentation fault error.
 
 # TODO
-[] add images
+- [ ] add images
 
 
 # Credits
