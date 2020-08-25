@@ -38,12 +38,12 @@ Be aware that this a completely detached environment from the base raspberry's s
 - `cd teamspeak3-server_linux_x86`
 - accept teamspeak's license by using the file method: `touch .ts3server_license_accepted` (the touch command creates a file named .ts3server_license_accepted)
 
-## FIRST RUN OF THE SERVER
+## *First run* of the server
 - run `./ts3server_minimal_runscript.sh` (**every start (on the rpi) will take A LOT because the server will need to compute a puzzle so have patience**)
 - Copy the created token and enter it when connecting to the server with the ts3client
 - yay, Connected!
 
-## RUNNING THE SERVER IN BACKGROUND
+## *Running* the server in background
 **from the base system**
 use `screen`: `apt install screen`
 
