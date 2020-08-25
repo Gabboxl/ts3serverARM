@@ -25,7 +25,7 @@ You can use chroot to enter in the environment: `sudo chroot ./chroot-stretch/`
  then `cd ~` to return in the default root's directory.
 
 ## Creation of the ts3 server
-Be aware that this a completely detached environment from the base raspberry's system, so, for example, if you need to use a certain program that you have installed on the base system, you need to reinstall it using `apt` (or whatever its installation method is) in the newly created environment.
+Be aware that this a completely detached environment from the base raspberry's system so, for example, if you need to use a certain program that you have installed on the base system, you need to reinstall it using `apt` (or whatever its installation method is) in the newly created environment.
 
 - **FROM NOW WE ARE INSIDE THE x86 ENVIRONMENT, the commands might take A LOT to run because we are using an emulator inside the raspberry which its specs aren't the best in the world** - 
 
