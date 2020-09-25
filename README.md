@@ -51,10 +51,9 @@ use `screen`: `apt install screen`
 
 to kill a screen instance, [this is its documentation](https://www.gnu.org/software/screen/manual/screen.html).
 
-## Final considerations
-So, when someone connects to the server, most probably it will spam `Unsupported ancillary data: 0/8` or similar text in the console. Don't worry about and ignore it, everything is working fine (well yes but actually no).
-
-- when you stop the server you may encounter a segmentation fault error.
+## Final considerations & known issues
+- When someone connects to the server, most probably it will spam `Unsupported ancillary data: 0/8` or similar text in the console. I didn't encounter any problem with server functionalities but at the time I didn't find a fix for that.
+- When you stop the server you may encounter a segmentation fault error.
 
 # TODO
 - [ ] add images
