@@ -55,6 +55,37 @@ use `screen`: `apt install screen`
 
 to kill a screen instance, [this is its documentation](https://www.gnu.org/software/screen/manual/screen.html).
 
+
+## Running the server automatically on boot
+To accomplish this I created a systemd service in the following way:
+
+Create a new service file: `sudo nano /etc/systemd/system/teamspeak3.service`.
+
+Copy the following text in it:
+```
+[Unit]
+Description=Teamspeak Qemu Server
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/home/gabboxl/chroot-stretch/
+ExecStartPre=-sudo mount -t sysfs sys ./sys/ ; -sudo mount -t proc proc ./proc/ ; -sudo mount --bind /dev ./dev/ ; -sudo mount --bind /dev/pts ./dev/pts/ ; -sudo mount --bind /dev/shm ./dev/shm/
+ExecStart=chroot . /root/teamspeak3-server_linux_x86/ts3server_minimal_runscript.sh
+ExecStop=chroot . /root/teamspeak3-server_linux_x86/ts3server_startscript.sh stop
+ExecReload=chroot . /root/teamspeak3-server_linux_x86/ts3server_startscript.sh restart
+
+[Install]
+WantedBy=multi-user.target
+```
+Then, **modify** the WorkingDirectory value so that it points to the folder where the chroot environment is located.
+
+Run `sudo systemctl enable teamspeak3` to enable the service, and `sudo systemctl start teamspeak3` to start the server.
+
+You're done!
+
 ## Final considerations & known issues
 - When someone connects to the server, most probably it will spam `Unsupported ancillary data: 0/8` or similar text in the console. I didn't encounter any problem with server functionalities but at the time I didn't find a fix for that.
 - When you stop the server you may encounter a segmentation fault error.
