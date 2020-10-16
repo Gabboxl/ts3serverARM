@@ -1,5 +1,9 @@
 # ts3serverARM
-I managed to run some x86 applications like the Teamspeak (32 bit) server on my rpi 3B+ using a virtualized chroot environment (under the **64-bit** version of Ubuntu Server for Rpi) using the following programs:
+I managed to run some x86 applications like the Teamspeak (32 bit) server on my rpi 3B+ using a virtualized chroot environment (under the **64-bit** version of Ubuntu Server for Rpi).
+
+## Tested on
+- Raspberry Pi 3B+ 
+- Raspberry Pi 3A+ (thanks to https://github.com/capsload2 !)
 
 ## Requirements
 - Be sure to use the **4.0.0** (or later) version of `qemu`, `qemu-user` and `qemu-user-static` (if not available, on Raspbian you can use debian's `sid` repository && for ubuntu use `eoan` or newer repos [you can change the repos by editing your /etc/apt/sources.list file; [anyway google is your best friend](https://google.it) ])
