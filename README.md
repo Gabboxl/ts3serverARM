@@ -89,7 +89,7 @@ Run `sudo systemctl enable teamspeak3` to enable the service, and `sudo systemct
 You're done!
 
 ## Final considerations & known issues
-- When someone connects to the server, most probably it will spam `Unsupported ancillary data: 0/8` or similar text in the console. I didn't encounter any problem with server functionalities but at the time I didn't find a fix for that.
+- When someone connects to the server, most probably it will spam `Unsupported ancillary data: 0/8` or similar text in the console. I didn't encounter any problem with server functionalities but at the time I didn't find a fix for that. [https://bugs.launchpad.net/qemu/+bug/1619896]
 - When you stop the server you may encounter a segmentation fault error.
 
 # TODO
