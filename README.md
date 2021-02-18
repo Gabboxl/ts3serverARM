@@ -82,7 +82,7 @@ ExecReload=chroot . /root/teamspeak3-server_linux_x86/ts3server_startscript.sh r
 [Install]
 WantedBy=multi-user.target
 ```
-Then, **modify** the WorkingDirectory value so that it points to the folder where the chroot environment is located.
+Then **modify** `WorkingDirectory`'s value so that it points to the folder where the chroot environment is located.
 
 Run `sudo systemctl enable teamspeak3` to enable the service, and `sudo systemctl start teamspeak3` to start the server.
 
