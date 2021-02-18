@@ -47,7 +47,10 @@ Be aware that this a completely detached environment from the host raspberry's s
 ## *First run* of the server
 - run `./ts3server_minimal_runscript.sh` (**every start of the ts3 server (on the rpi) will take A LOT because it will need to compute a puzzle, so have patience**)
 - Copy the created token and enter it when connecting to the server with the ts3client
-- yay, Connected!
+- yay, Connected! 
+
+
+[well if you have problems open an issue xdd]
 
 ## *Running* the server in background
 **from the base system**
