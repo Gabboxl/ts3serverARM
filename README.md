@@ -14,8 +14,10 @@ If the 4.0.0 version isn't available, on Raspbian you can use Debian's `sid` rep
 - `binutils`
 
 ## Creation of the x86 enviroment
-- The `i386` architecture is 32-bit. The `amd64` architecture is 64-bit. Choose which one you like the most. x64 should be generally faster, mostly due to standardized register usage for function calls.
-- I will be creating an `amd64` environment from now on.
+> [!note]
+> The `i386` architecture is 32-bit. The `amd64` architecture is 64-bit. Choose which one you like the most. x64 should be generally faster, mostly due to standardized register usage for function calls.
+
+> I will be creating an `amd64` environment from now on.
 
 1) Use *debootstrap* to download the *base system* in a folder called "./chroot-debian" (folder's name is up to you - in this case we'll be downloading **Debian stable**, you can use others as well): `sudo debootstrap --arch amd64 stable ./chroot-debian http://ftp.us.debian.org/debian`
 
@@ -30,13 +32,15 @@ sudo mount --bind /dev/shm ./chroot-debian/dev/shm/
 ```
 
 ## Entering in the x86 environment
-You can use chroot to enter the environment: `sudo chroot ./chroot-debian/`
- then `cd ~` to return to the default root directory.
+1) `sudo chroot ./chroot-debian/`
+2) `cd ~` to return to the default root directory.
 
 ## Creation of the ts3 server
-Be aware that this environment acts as a parallel distro install from the host Raspberry's system, so for example, if you need to use a certain program, you need to reinstall it using `apt` (or whatever its installation method is) in the newly created environment.
+> [!note]
+> Be aware that this environment acts as a parallel distro install from the host Raspberry's system, so for example, if you need to use a certain program, you need to reinstall it using `apt` (or whatever its installation method is) in the newly created environment.
 
-- **FROM NOW WE ARE INSIDE THE x86 ENVIRONMENT, the commands might take A LOT to run because we are using an emulator inside the Raspberry whose specs aren't the best in the world. The `amd64` architecture should be faster than `i386`.** - 
+> [!warning]
+> **FROM NOW WE ARE INSIDE THE x86 ENVIRONMENT, the commands might take A LOT to run because we are using an emulator inside the Raspberry whose specs aren't the best in the world. The `amd64` architecture should be faster than `i386` due to code optimizations.** 
 
 If Apt asks you to install a package without verification, type YES.
 
