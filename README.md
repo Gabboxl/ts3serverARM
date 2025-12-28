@@ -53,7 +53,7 @@ Be aware that this is a detached environment from the host Raspberry's system, s
 - yay, Connected! 
 
 
-[well if you have problems open an issue xdd]
+[well if you have problems open an issue]
 
 ## *Running* the server in background
 **from the base system**
@@ -69,7 +69,7 @@ To accomplish this I created a systemd service in the following way:
 
 Create a new service file: `sudo nano /etc/systemd/system/teamspeak3.service`.
 
-Copy the following text in it:
+Copy the following text into the service file:
 ```
 [Unit]
 Description=Teamspeak Qemu Server
@@ -95,7 +95,7 @@ Run `sudo systemctl enable teamspeak3` to enable the service, and `sudo systemct
 You're done!
 
 ## Final considerations & known issues
-- When someone connects to the server, most probably it will spam `Unsupported ancillary data: 0/8` or similar text in the console. I didn't encounter any problem with server functionalities but at the time I didn't find a fix for that. [https://bugs.launchpad.net/qemu/+bug/1619896]
+~- When someone connects to the server, most probably it will spam `Unsupported ancillary data: 0/8` or similar text in the console. I didn't encounter any problem with server functionalities but at the time I didn't find a fix for that. [https://bugs.launchpad.net/qemu/+bug/1619896]~ [Fixed with https://gitlab.com/qemu-project/qemu/-/commit/017fc6620f2513c1d0217289c48be4c51e0167a7]
 - When trying to stop the server, you may encounter a segmentation fault error.
 
 # TODO
