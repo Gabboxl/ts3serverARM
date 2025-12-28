@@ -35,18 +35,18 @@ sudo mount --bind /dev/shm ./chroot-debian/dev/shm/
 1) `sudo chroot ./chroot-debian/`
 2) `cd ~` to return to the default root directory.
 
-## Creation of the ts3 server
+## Creation of the TS3 server
 > [!note]
 > Be aware that this environment acts as a parallel distro install from the host Raspberry's system, so for example, if you need to use a certain program, you need to reinstall it using `apt` (or whatever its installation method is) in the newly created environment.
 
 > [!warning]
-> **FROM NOW WE ARE INSIDE THE x86 ENVIRONMENT, the commands might take A LOT to run because we are using an emulator inside the Raspberry whose specs aren't the best in the world. The `amd64` architecture should be faster than `i386` due to code optimizations.** 
+> **FROM NOW ON WE ARE INSIDE THE x86 ENVIRONMENT, the commands might take A LOT to run because we are using an emulator inside the Raspberry whose specs aren't the best in the world. The `amd64` architecture should be faster than `i386` due to code optimizations.** 
 
 If Apt asks you to install a package without verification, type YES.
 
-1) Install `ca-certificates`, `bzip2` and `wget` packages: `apt install ca-certificates bzip2 wget`
-2) Download the teamspeak3 (**32bit** or **64bit** version depending on your environment) server using `wget` (*short - depends on your net speed*): `wget https://files.teamspeak-services.com/releases/server/3.11.0/teamspeak3-server_linux_x86-3.11.0.tar.bz2` (you can find the latest versions [here](https://teamspeak.com/en/downloads/#server))
-3) Untar the downloaded archive: `tar -xvf teamspeak3-server_linux_x86-3.11.0.tar.bz2`
+1) Install `ca-certificates`, `bzip2`, and `wget` packages: `apt install ca-certificates bzip2 wget`
+2) Download the Teamspeak3 (**32bit** or **64bit** version depending on your environment) server using `wget`: `wget https://files.teamspeak-services.com/releases/server/3.13.7/teamspeak3-server_linux_amd64-3.13.7.tar.bz2` (you can find the latest versions [here](https://teamspeak.com/en/downloads/#server))
+3) Extract the downloaded archive: `tar -xvf teamspeak3-server_linux_x86-3.11.0.tar.bz2`
 4) Enter the folder: `cd teamspeak3-server_linux_x86`
 5) Accept Teamspeak's license by using the file method: `touch .ts3server_license_accepted` (the touch command creates a file named .ts3server_license_accepted)
 
