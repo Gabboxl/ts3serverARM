@@ -46,8 +46,8 @@ If Apt asks you to install a package without verification, type YES.
 
 1) Install `ca-certificates`, `bzip2`, and `wget` packages: `apt install ca-certificates bzip2 wget`
 2) Download the Teamspeak3 (**32bit** or **64bit** version depending on your environment) server using `wget`: `wget https://files.teamspeak-services.com/releases/server/3.13.7/teamspeak3-server_linux_amd64-3.13.7.tar.bz2` (you can find the latest versions [here](https://teamspeak.com/en/downloads/#server))
-3) Extract the downloaded archive: `tar -xvf teamspeak3-server_linux_x86-3.11.0.tar.bz2`
-4) Enter the folder: `cd teamspeak3-server_linux_x86`
+3) Extract the downloaded archive: `tar -xvf teamspeak3-server_linux_amd64-3.13.7.tar.bz2`
+4) Enter the folder: `cd teamspeak3-server_linux_amd64`
 5) Accept Teamspeak's license by using the file method: `touch .ts3server_license_accepted` (the touch command creates a file named .ts3server_license_accepted)
 
 ## *First run* of the server
@@ -62,7 +62,7 @@ If Apt asks you to install a package without verification, type YES.
 **from the base system**
 use `screen`: `apt install screen`
 
-`sudo screen -dm sudo chroot ./chroot-debian/ /root/teamspeak3-server_linux_x86/ts3server_minimal_runscript.sh`
+`sudo screen -dm sudo chroot ./chroot-debian/ /root/teamspeak3-server_linux_amd64/ts3server_minimal_runscript.sh`
 
 to kill a screen instance, [this is its documentation](https://www.gnu.org/software/screen/manual/screen.html).
 
@@ -84,9 +84,9 @@ User=root
 Group=root
 WorkingDirectory=/home/gabboxl/chroot-debian/
 ExecStartPre=-sudo mount -t sysfs sys ./sys/ ; -sudo mount -t proc proc ./proc/ ; -sudo mount --bind /dev ./dev/ ; -sudo mount --bind /dev/pts ./dev/pts/ ; -sudo mount --bind /dev/shm ./dev/shm/
-ExecStart=chroot . /root/teamspeak3-server_linux_x86/ts3server_minimal_runscript.sh
-ExecStop=chroot . /root/teamspeak3-server_linux_x86/ts3server_startscript.sh stop
-ExecReload=chroot . /root/teamspeak3-server_linux_x86/ts3server_startscript.sh restart
+ExecStart=chroot . /root/teamspeak3-server_linux_amd64/ts3server_minimal_runscript.sh
+ExecStop=chroot . /root/teamspeak3-server_linux_amd64/ts3server_startscript.sh stop
+ExecReload=chroot . /root/teamspeak3-server_linux_amd64/ts3server_startscript.sh restart
 
 [Install]
 WantedBy=multi-user.target
