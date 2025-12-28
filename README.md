@@ -51,7 +51,7 @@ If Apt asks you to install a package without verification, type YES.
 5) Accept Teamspeak's license by using the file method: `touch .ts3server_license_accepted` (the touch command creates a file named .ts3server_license_accepted)
 
 ## *First run* of the server
-1) run `./ts3server_minimal_runscript.sh` (**the ts3 server needs to compute a security puzzle at every start without signaling it on the console, so have patience**)
+1) Run `./ts3server_minimal_runscript.sh` (**the ts3 server needs to compute a security puzzle at every start without signaling it on the console, so have patience**)
 2) Copy the created Server Admin token and enter it when connecting to the server
 3) yay, Connected! 
 
@@ -64,7 +64,7 @@ use `screen`: `apt install screen`
 
 `sudo screen -dm sudo chroot ./chroot-debian/ /root/teamspeak3-server_linux_amd64/ts3server_minimal_runscript.sh`
 
-to kill a screen instance, [this is its documentation](https://www.gnu.org/software/screen/manual/screen.html).
+To kill a screen instance, [this is its documentation](https://www.gnu.org/software/screen/manual/screen.html).
 
 
 ## Running the server automatically on boot
