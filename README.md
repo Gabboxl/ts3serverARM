@@ -19,7 +19,7 @@ If the 4.0.0 version isn't available, on Raspbian you can use Debian's `sid` rep
 
 1) Use *debootstrap* to download the *base system* in a folder called "./chroot-debian" (folder's name is up to you - in this case we'll be downloading **Debian stable**, you can use others as well): `sudo debootstrap --arch amd64 stable ./chroot-debian http://ftp.us.debian.org/debian`
 
-2) Copy the qemu amd64 static emulator to the x86 environment's bin directory: `sudo cp /usr/bin/qemu-amd64-static ./chroot-stable/usr/bin/`
+2) Copy the qemu amd64 static emulator to the x86 environment's bin directory: `sudo cp /usr/bin/qemu-amd64-static ./chroot-debian/usr/bin/`
 3) Mount the following directories to the x86 environment's directories (**REMEMBER** that you need to do this on **EVERY** system restart):
 ```
 sudo mount -t sysfs sys ./chroot-debian/sys/
@@ -58,7 +58,7 @@ If Apt asks you to install a package without verification, type YES.
 **from the base system**
 use `screen`: `apt install screen`
 
-`sudo screen -dm sudo chroot ./chroot-stable/ /root/teamspeak3-server_linux_x86/ts3server_minimal_runscript.sh`
+`sudo screen -dm sudo chroot ./chroot-debian/ /root/teamspeak3-server_linux_x86/ts3server_minimal_runscript.sh`
 
 to kill a screen instance, [this is its documentation](https://www.gnu.org/software/screen/manual/screen.html).
 
@@ -78,7 +78,7 @@ After=syslog.target network.target
 Type=simple
 User=root
 Group=root
-WorkingDirectory=/home/gabboxl/chroot-stable/
+WorkingDirectory=/home/gabboxl/chroot-debian/
 ExecStartPre=-sudo mount -t sysfs sys ./sys/ ; -sudo mount -t proc proc ./proc/ ; -sudo mount --bind /dev ./dev/ ; -sudo mount --bind /dev/pts ./dev/pts/ ; -sudo mount --bind /dev/shm ./dev/shm/
 ExecStart=chroot . /root/teamspeak3-server_linux_x86/ts3server_minimal_runscript.sh
 ExecStop=chroot . /root/teamspeak3-server_linux_x86/ts3server_startscript.sh stop
