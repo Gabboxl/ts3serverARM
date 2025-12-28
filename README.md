@@ -37,7 +37,7 @@ sudo mount --bind /dev/shm ./chroot-debian/dev/shm/
 
 ## Creation of the TS3 server
 > [!note]
-> Be aware that this environment acts as a parallel distro install from the host Raspberry's system, so for example, if you need to use a certain program, you need to reinstall it using `apt` (or whatever its installation method is) in the newly created environment.
+> Be aware that this environment acts as a parallel user space, so for example, if you need to use a certain program, you need to reinstall it using `apt` (or whatever its installation method is) in the newly created environment.
 
 > [!warning]
 > **FROM NOW ON WE ARE INSIDE THE x86 ENVIRONMENT, the commands might take A LOT to run because we are using an emulator inside the Raspberry whose specs aren't the best in the world. The `amd64` architecture should be faster than `i386` due to code optimizations.** 
