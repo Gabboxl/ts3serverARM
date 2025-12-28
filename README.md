@@ -1,48 +1,51 @@
 # ts3serverARM
-I managed to run some x86 applications like the Teamspeak (32 bit) server on my rpi 3B+ using a virtualized chroot environment (under the **64-bit** version of Ubuntu Server for Rpi).
+I managed to run some x86 applications like the Teamspeak (32 or 64 bit) server on my rpi 3B+ using a virtualized chroot environment (under the **64-bit** version of Ubuntu Server for Rpi).
 
 ## Tested on
 - Raspberry Pi 3B+ 
 - Raspberry Pi 3A+ (thanks to https://github.com/capsload2 !)
 
 ## Requirements
-- Be sure to use the **4.0.0** (or later) version of `qemu`, `qemu-user` and `qemu-user-static` 
+- Be sure to use the **4.0.0** (or later) version of `qemu`, `qemu-user`, and `qemu-user-static` 
 
-if the 4.0.0 version isn't available, on Raspbian you can use debian's `sid` repository && for ubuntu use `eoan` or newer repos [you can change the repos by editing your /etc/apt/sources.list file; [anyway google is your best friend](https://google.it) ]
+If the 4.0.0 version isn't available, on Raspbian you can use Debian's `sid` repository && for Ubuntu use `eoan` or newer repos [you can change the repos by editing your /etc/apt/sources.list file; [anyway google is your best friend](https://google.it) ]
 - `debootstrap`
 - `binfmt-support`
 - `binutils`
 
 ## Creation of the x86 enviroment
-- Use *debootstrap* to download the *base system* in a folder called "./chroot-stretch" (folder's name is up to you - in this case we'll be downloading **debian stretch**, you can use others aswell): `sudo debootstrap --arch i386 stretch ./chroot-stretch http://ftp.us.debian.org/debian`
+- The `i386` architecture is 32-bit. The `amd64` architecture is 64-bit. Choose which one you like the most. x64 should be generally a little bit faster, mostly due to standardized register usage for function calls.
+- I will be creating an `amd64` environment from now on.
 
-- Copy the qemu i386 static emulator to the x86 environment's bin directory: `sudo cp /usr/bin/qemu-i386-static ./chroot-stretch/usr/bin/`
+- Use *debootstrap* to download the *base system* in a folder called "./chroot-debian" (folder's name is up to you - in this case we'll be downloading **Debian stable**, you can use others as well): `sudo debootstrap --arch amd64 stable ./chroot-debian http://ftp.us.debian.org/debian`
+
+- Copy the qemu amd64 static emulator to the x86 environment's bin directory: `sudo cp /usr/bin/qemu-amd64-static ./chroot-stable/usr/bin/`
 - Mount the following directories to the x86 environment (**REMEMBER** that you need to do this on **EVERY** system restart):
 ```
-sudo mount -t sysfs sys ./chroot-stretch/sys/
-sudo mount -t proc proc ./chroot-stretch/proc/
-sudo mount --bind /dev ./chroot-stretch/dev/
-sudo mount --bind /dev/pts ./chroot-stretch/dev/pts/
-sudo mount --bind /dev/shm ./chroot-stretch/dev/shm/
+sudo mount -t sysfs sys ./chroot-debian/sys/
+sudo mount -t proc proc ./chroot-debian/proc/
+sudo mount --bind /dev ./chroot-debian/dev/
+sudo mount --bind /dev/pts ./chroot-debian/dev/pts/
+sudo mount --bind /dev/shm ./chroot-debian/dev/shm/
 ```
 
 ## Entering in the x86 environment
-You can use chroot to enter in the environment: `sudo chroot ./chroot-stretch/`
- then `cd ~` to return in the default root's directory.
+You can use chroot to enter the environment: `sudo chroot ./chroot-debian/`
+ then `cd ~` to return to the default root directory.
 
 ## Creation of the ts3 server
-Be aware that this a completely detached environment from the host raspberry's system, so for example, if you need to use a certain program that you have installed on the host system, you need to reinstall it using `apt` (or whatever its installation method is) in the newly created environment.
+Be aware that this is a detached environment from the host Raspberry's system, so for example, if you need to use a certain program that you have installed on the host system, you need to reinstall it using `apt` (or whatever its installation method is) in the newly created environment.
 
-- **FROM NOW WE ARE INSIDE THE x86 ENVIRONMENT, the commands might take A LOT to run because we are using an emulator inside the raspberry which its specs aren't the best in the world** - 
+- **FROM NOW WE ARE INSIDE THE x86 ENVIRONMENT, the commands might take A LOT to run because we are using an emulator inside the Raspberry which its specs aren't the best in the world** - 
 
-!) if apt asks you to install a package without verification type YES.
+!) If Apt asks you to install a package without verification type YES.
 
 - Install `ca-certificates` package (*very long*): `apt install ca-certificates`
 - Install `bzip2` package for the tar program (*short*): `apt install bzip2`
-- Download the teamspeak3 (**32bit** version) server using `wget` (*short - depends by your net speed*): `wget https://files.teamspeak-services.com/releases/server/3.11.0/teamspeak3-server_linux_x86-3.11.0.tar.bz2` (you can find the latest 32-bit version [here](https://teamspeak.com/en/downloads/#server))
+- Download the teamspeak3 (**32bit** or **64bit** version depending on your environment) server using `wget` (*short - depends on your net speed*): `wget https://files.teamspeak-services.com/releases/server/3.11.0/teamspeak3-server_linux_x86-3.11.0.tar.bz2` (you can find the latest versions [here](https://teamspeak.com/en/downloads/#server))
 - Untar the downloaded archive: `tar -xvf teamspeak3-server_linux_x86-3.11.0.tar.bz2`
 - `cd teamspeak3-server_linux_x86`
-- accept teamspeak's license by using the file method: `touch .ts3server_license_accepted` (the touch command creates a file named .ts3server_license_accepted)
+- Accept Teamspeak's license by using the file method: `touch .ts3server_license_accepted` (the touch command creates a file named .ts3server_license_accepted)
 
 ## *First run* of the server
 - run `./ts3server_minimal_runscript.sh` (**every start of the ts3 server (on the rpi) will take A LOT because it will need to compute a puzzle, so have patience**)
@@ -56,7 +59,7 @@ Be aware that this a completely detached environment from the host raspberry's s
 **from the base system**
 use `screen`: `apt install screen`
 
-`sudo screen -dm sudo chroot ./chroot-stretch/ /root/teamspeak3-server_linux_x86/ts3server_minimal_runscript.sh`
+`sudo screen -dm sudo chroot ./chroot-stable/ /root/teamspeak3-server_linux_x86/ts3server_minimal_runscript.sh`
 
 to kill a screen instance, [this is its documentation](https://www.gnu.org/software/screen/manual/screen.html).
 
@@ -76,7 +79,7 @@ After=syslog.target network.target
 Type=simple
 User=root
 Group=root
-WorkingDirectory=/home/gabboxl/chroot-stretch/
+WorkingDirectory=/home/gabboxl/chroot-stable/
 ExecStartPre=-sudo mount -t sysfs sys ./sys/ ; -sudo mount -t proc proc ./proc/ ; -sudo mount --bind /dev ./dev/ ; -sudo mount --bind /dev/pts ./dev/pts/ ; -sudo mount --bind /dev/shm ./dev/shm/
 ExecStart=chroot . /root/teamspeak3-server_linux_x86/ts3server_minimal_runscript.sh
 ExecStop=chroot . /root/teamspeak3-server_linux_x86/ts3server_startscript.sh stop
