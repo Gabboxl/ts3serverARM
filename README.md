@@ -22,7 +22,9 @@ If the 4.0.0 version isn't available, on Raspbian you can use Debian's `sid` rep
 1) Use *debootstrap* to download the *base system* in a folder called "./chroot-debian" (folder's name is up to you - in this case we'll be downloading **Debian stable**, you can use others as well): `sudo debootstrap --arch amd64 stable ./chroot-debian http://ftp.us.debian.org/debian`
 
 2) Copy the qemu amd64 static emulator to the x86 environment's bin directory:
+   
    For QEMU >= v10.0.0: `sudo cp /usr/bin/qemu-amd64 ./chroot-debian/usr/bin/`
+   
    For QEMU < v10.0.0: `sudo cp /usr/bin/qemu-amd64-static ./chroot-debian/usr/bin/`
 4) Mount the following directories to the x86 environment's directories (**REMEMBER** that you need to do this on **EVERY** system restart):
 ```
