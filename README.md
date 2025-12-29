@@ -42,9 +42,9 @@ sudo mount --bind /dev/shm ./chroot-debian/dev/shm/
 > [!warning]
 > **FROM NOW ON WE ARE INSIDE THE x86 ENVIRONMENT, the commands might take A LOT to run because we are using an emulator inside the Raspberry whose specs aren't the best in the world. The `amd64` architecture should be faster than `i386` due to code optimizations.** 
 
-If Apt asks you to install a package without verification, type YES.
+If Apt asks you to install a package without verification, choose YES.
 
-1) Install `ca-certificates`, `bzip2`, and `wget` packages: `apt install ca-certificates bzip2 wget`
+1) Install `debian-keyring`, `ca-certificates`, `bzip2`, and `wget` packages: `apt install ca-certificates bzip2 wget`
 2) Download the Teamspeak3 (**32bit** or **64bit** version depending on your environment) server using `wget`: `wget https://files.teamspeak-services.com/releases/server/3.13.7/teamspeak3-server_linux_amd64-3.13.7.tar.bz2` (you can find the latest versions [here](https://teamspeak.com/en/downloads/#server))
 3) Extract the downloaded archive: `tar -xvf teamspeak3-server_linux_amd64-3.13.7.tar.bz2`
 4) Enter the folder: `cd teamspeak3-server_linux_amd64`
